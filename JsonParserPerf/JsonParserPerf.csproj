@@ -10,6 +10,20 @@
       <PackageReference Include="Google.Protobuf" Version="3.36.1" />
     </ItemGroup>
 
+    <PropertyGroup>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Authors>AkshayDhola</Authors>
+        <Description>Fast protobuf JSON parser for System.Text.Json. Compatible with Google.Protobuf JsonParser, about 2x faster with less allocation.</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/AkshayDhola/JsonParserPerf</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/AkshayDhola/JsonParserPerf</RepositoryUrl>
+        <PackageTags>protobuf;json;system.text.json;parser;performance</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="../README.md" Pack="true" PackagePath="/" />
+    </ItemGroup>
+
     <ItemGroup>
       <InternalsVisibleTo Include="JsonParserPerf.Tests" />
     </ItemGroup>

@@ -4,6 +4,10 @@ A fast protobuf JSON parser for `System.Text.Json`. It reads the same JSON that 
 
 ## Usage
 
+```bash
+dotnet add package JsonParserPerf
+```
+
 ```csharp
 var options = new JsonSerializerOptions().AddProtobuf(registry); // registry is optional
 var message = JsonSerializer.Deserialize<MyMessage>(json, options);
