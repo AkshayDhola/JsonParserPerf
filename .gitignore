@@ -47,3 +47,6 @@ Thumbs.db
 # ReSharper
 _ReSharper*/
 *.[Rr]e[Ss]harper*
+
+# BenchmarkDotNet
+BenchmarkDotNet.Artifacts/
