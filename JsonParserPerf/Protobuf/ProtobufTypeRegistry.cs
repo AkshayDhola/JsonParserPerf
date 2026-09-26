@@ -11,11 +11,14 @@ public static class ProtobufTypeRegistry
     private static readonly Lazy<TypeRegistry> RegistryCache =
         new(GetRegistryFromAssemblies, LazyThreadSafetyMode.ExecutionAndPublication);
     
-    public static TypeRegistry GetTypeRegistry() => RegistryCache.Value;
+    public static TypeRegistry FromLoadedAssemblies()
+    {
+        return RegistryCache.Value;
+    }
     
     private static TypeRegistry GetRegistryFromAssemblies()
     {
-        var fileDescriptorHashSet = new HashSet<FileDescriptor>();
+        var files = new HashSet<FileDescriptor>();
 
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
         {
@@ -30,19 +33,24 @@ public static class ProtobufTypeRegistry
                 if (type.GetProperty(DescriptorPropertyName, BindingFlags.Public | BindingFlags.Static)?.GetValue(null)
                     is MessageDescriptor descriptor)
                 {
-                    fileDescriptorHashSet.Add(descriptor.File);
+                    files.Add(descriptor.File);
                 }
             }
         }
 
-        return TypeRegistry.FromFiles(fileDescriptorHashSet);
+        return TypeRegistry.FromFiles(files);
     }
 
     private static Type?[] GetTypesSafely(Assembly assembly)
     {
         try
         {
-            return assembly.IsDynamic ? [] : assembly.GetTypes();
+            if (assembly.IsDynamic)
+            {
+                return [];
+            }
+
+            return assembly.GetTypes();
         }
         catch (ReflectionTypeLoadException ex)
         {

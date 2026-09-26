@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package jsonparserperf.protobufdatamodels;
+
+option csharp_namespace = "JsonParserPerf.ProtobufDataModels";
+
+enum TopLevelEnum {
+  TOP_LEVEL_ENUM_UNSPECIFIED = 0;
+  TOP_LEVEL_ENUM_FIRST = 1;
+  TOP_LEVEL_ENUM_SECOND = 2;
+  TOP_LEVEL_ENUM_NEGATIVE = -1;
+}
+
+message EnumTypes {
+  TopLevelEnum top_level_enum_field = 1;
+  NestedEnum nested_enum_field = 2;
+  repeated TopLevelEnum top_level_enum_fields = 3;
+  map<string, TopLevelEnum> top_level_enum_map = 4;
+
+  enum NestedEnum {
+    NESTED_ENUM_UNSPECIFIED = 0;
+    NESTED_ENUM_ALPHA = 1;
+    NESTED_ENUM_BETA = 2;
+  }
+}

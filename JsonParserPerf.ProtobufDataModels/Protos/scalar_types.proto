@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package jsonparserperf.protobufdatamodels;
+
+option csharp_namespace = "JsonParserPerf.ProtobufDataModels";
+
+// One field per protobuf scalar type, each named after its type.
+// proto2 groups are the only wire type not represented here: proto3 cannot declare them.
+message ScalarTypes {
+  double double_field = 1;
+  float float_field = 2;
+  int32 int32_field = 3;
+  int64 int64_field = 4;
+  uint32 uint32_field = 5;
+  uint64 uint64_field = 6;
+  sint32 sint32_field = 7;
+  sint64 sint64_field = 8;
+  fixed32 fixed32_field = 9;
+  fixed64 fixed64_field = 10;
+  sfixed32 sfixed32_field = 11;
+  sfixed64 sfixed64_field = 12;
+  bool bool_field = 13;
+  string string_field = 14;
+  bytes bytes_field = 15;
+}
+
+// The same set as repeated fields.
+message RepeatedScalarTypes {
+  repeated double double_fields = 1;
+  repeated float float_fields = 2;
+  repeated int32 int32_fields = 3;
+  repeated int64 int64_fields = 4;
+  repeated uint32 uint32_fields = 5;
+  repeated uint64 uint64_fields = 6;
+  repeated sint32 sint32_fields = 7;
+  repeated sint64 sint64_fields = 8;
+  repeated fixed32 fixed32_fields = 9;
+  repeated fixed64 fixed64_fields = 10;
+  repeated sfixed32 sfixed32_fields = 11;
+  repeated sfixed64 sfixed64_fields = 12;
+  repeated bool bool_fields = 13;
+  repeated string string_fields = 14;
+  repeated bytes bytes_fields = 15;
+}

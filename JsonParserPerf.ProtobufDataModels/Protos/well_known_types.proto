@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package jsonparserperf.protobufdatamodels;
+
+option csharp_namespace = "JsonParserPerf.ProtobufDataModels";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+// Every google.protobuf type that has its own JSON form.
+message WellKnownTypes {
+  google.protobuf.DoubleValue double_value_field = 1;
+  google.protobuf.FloatValue float_value_field = 2;
+  google.protobuf.Int64Value int64_value_field = 3;
+  google.protobuf.UInt64Value uint64_value_field = 4;
+  google.protobuf.Int32Value int32_value_field = 5;
+  google.protobuf.UInt32Value uint32_value_field = 6;
+  google.protobuf.BoolValue bool_value_field = 7;
+  google.protobuf.StringValue string_value_field = 8;
+  google.protobuf.BytesValue bytes_value_field = 9;
+  google.protobuf.Timestamp timestamp_field = 10;
+  google.protobuf.Duration duration_field = 11;
+  google.protobuf.FieldMask field_mask_field = 12;
+  google.protobuf.Struct struct_field = 13;
+  google.protobuf.Value value_field = 14;
+  google.protobuf.ListValue list_value_field = 15;
+  google.protobuf.Any any_field = 16;
+  google.protobuf.Empty empty_field = 17;
+  google.protobuf.NullValue null_value_field = 18;
+}
+
+// The same types repeated, where the generator collapses wrappers to bare CLR types.
+message WellKnownRepeatedTypes {
+  repeated google.protobuf.DoubleValue double_value_fields = 1;
+  repeated google.protobuf.Int32Value int32_value_fields = 2;
+  repeated google.protobuf.StringValue string_value_fields = 3;
+  repeated google.protobuf.BytesValue bytes_value_fields = 4;
+  repeated google.protobuf.Timestamp timestamp_fields = 5;
+  repeated google.protobuf.Duration duration_fields = 6;
+  repeated google.protobuf.FieldMask field_mask_fields = 7;
+  repeated google.protobuf.Struct struct_fields = 8;
+  repeated google.protobuf.Value value_fields = 9;
+  repeated google.protobuf.ListValue list_value_fields = 10;
+  repeated google.protobuf.Any any_fields = 11;
+  repeated google.protobuf.Empty empty_fields = 12;
+  repeated google.protobuf.NullValue null_value_fields = 13;
+}
+
+// The same types as map values.
+message WellKnownMapTypes {
+  map<string, google.protobuf.DoubleValue> double_value_map = 1;
+  map<string, google.protobuf.Int32Value> int32_value_map = 2;
+  map<string, google.protobuf.StringValue> string_value_map = 3;
+  map<string, google.protobuf.BoolValue> bool_value_map = 4;
+  map<string, google.protobuf.Timestamp> timestamp_map = 5;
+  map<string, google.protobuf.Duration> duration_map = 6;
+  map<string, google.protobuf.FieldMask> field_mask_map = 7;
+  map<string, google.protobuf.Struct> struct_map = 8;
+  map<string, google.protobuf.Value> value_map = 9;
+  map<string, google.protobuf.ListValue> list_value_map = 10;
+  map<string, google.protobuf.Any> any_map = 11;
+  map<string, google.protobuf.Empty> empty_map = 12;
+}

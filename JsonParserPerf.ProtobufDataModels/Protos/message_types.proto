@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package jsonparserperf.protobufdatamodels;
+
+option csharp_namespace = "JsonParserPerf.ProtobufDataModels";
+
+message LeafMessage {
+  string leaf_string_field = 1;
+  int32 leaf_int32_field = 2;
+}
+
+message MessageTypes {
+  LeafMessage leaf_message_field = 1;
+  NestedMessage nested_message_field = 2;
+  repeated LeafMessage leaf_message_fields = 3;
+  map<string, LeafMessage> leaf_message_map = 4;
+
+  message NestedMessage {
+    string nested_string_field = 1;
+    LeafMessage nested_leaf_message_field = 2;
+  }
+}
+
+// Self-referencing message, for nesting and recursion-limit coverage.
+message RecursiveMessage {
+  string name_field = 1;
+  RecursiveMessage child_field = 2;
+  repeated RecursiveMessage child_fields = 3;
+}

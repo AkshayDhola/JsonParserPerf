@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package jsonparserperf.protobufdatamodels;
+
+option csharp_namespace = "JsonParserPerf.ProtobufDataModels";
+
+import "message_types.proto";
+
+message OneofTypes {
+  oneof first_choice {
+    string first_string_field = 1;
+    int32 first_int32_field = 2;
+    LeafMessage first_message_field = 3;
+  }
+
+  oneof second_choice {
+    bool second_bool_field = 4;
+    bytes second_bytes_field = 5;
+  }
+
+  string plain_string_field = 6;
+}
+
+// proto3 optional fields, which the generator backs with synthetic oneofs and explicit presence.
+message OptionalTypes {
+  optional int32 optional_int32_field = 1;
+  optional string optional_string_field = 2;
+  optional bool optional_bool_field = 3;
+  optional bytes optional_bytes_field = 4;
+  optional LeafMessage optional_message_field = 5;
+}

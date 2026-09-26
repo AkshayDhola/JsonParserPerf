@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package jsonparserperf.protobufdatamodels;
+
+option csharp_namespace = "JsonParserPerf.ProtobufDataModels";
+
+import "enum_types.proto";
+import "map_types.proto";
+import "message_types.proto";
+import "scalar_types.proto";
+import "well_known_types.proto";
+
+// Every type family in one message, for the large end-to-end benchmark.
+message LargePayload {
+  string payload_name_field = 1;
+  repeated ScalarTypes scalar_types_fields = 2;
+  repeated RepeatedScalarTypes repeated_scalar_types_fields = 3;
+  repeated EnumTypes enum_types_fields = 4;
+  repeated WellKnownTypes well_known_types_fields = 5;
+  repeated MapValueTypes map_value_types_fields = 6;
+  map<string, MessageTypes> message_types_map = 7;
+  RecursiveMessage recursive_message_field = 8;
+}

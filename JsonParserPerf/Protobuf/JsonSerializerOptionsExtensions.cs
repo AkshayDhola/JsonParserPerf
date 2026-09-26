@@ -12,9 +12,15 @@ public static class JsonSerializerOptionsExtensions
         TypeRegistry? registry = null)
     {
         ArgumentNullException.ThrowIfNull(options);
-        options.Converters.Add(registry is null
-            ? new ProtobufJsonConverterFactory()
-            : new ProtobufJsonConverterFactory(new ProtobufParserOptions(registry)));
+        if (registry is null)
+        {
+            options.Converters.Add(new ProtobufJsonConverterFactory());
+        }
+        else
+        {
+            options.Converters.Add(new ProtobufJsonConverterFactory(new ProtobufParserOptions(registry)));
+        }
+
         return options;
     }
 }

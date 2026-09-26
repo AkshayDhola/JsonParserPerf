@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using Google.Protobuf;
 using JsonParserPerf.Options;
+using JsonParserPerf.Protobuf.Deserialization;
 
 namespace JsonParserPerf.Protobuf.Json;
 
@@ -18,13 +19,13 @@ public sealed class ProtobufJsonConverter<T>(ProtobufParserOptions options) : Js
 
     public override T? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        if (reader.TokenType == JsonTokenType.Null)
+        // JSON null is no message, except google.protobuf.Value, where null is the NullValue.
+        if (reader.TokenType == JsonTokenType.Null && typeof(T) != typeof(Google.Protobuf.WellKnownTypes.Value))
         {
             return null;
         }
-        
-        // TODO: implement protobuf parsing
-        return new T();
+
+        return (T)((IProtobufJsonParser)ProtobufJsonParser<T>.Instance).ParseMessage(ref reader, _options);
     }
 
     public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
